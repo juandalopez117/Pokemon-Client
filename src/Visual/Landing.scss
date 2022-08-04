@@ -1,0 +1,123 @@
+$base-font-size: 16px;
+
+@function em($px, $base: $base-font-size) {
+  @return ($px / $base) * 1em;
+}
+
+.background {
+  background-color: darken(turquoise, 15);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.jump-container {
+  @media screen and (min-width: em(1000px)) {
+    animation: jumpy 2s 1s infinite alternate;    
+  }
+}
+
+.pokeball {
+  & {
+    border-radius: 50%;
+    border: 2px solid white;
+    height: em(50px);
+    margin: 0 auto 1rem;
+    position: relative;
+    width: em(50px);
+
+    @media screen and (min-width: em(700px)) {
+      animation: back-and-forth 4s 3s infinite;
+      border: 4px solid white;
+      width: em(70px);
+      height: em(70px);
+    }
+  }
+
+  &__inner-circle {
+    animation: spinning ease-in-out 5s infinite;
+    background-color: white;
+    border-radius: 50%;
+    border: 2px solid white;
+    height: em(15px);
+    left: em(15px);
+    position: absolute;
+    top: em(15px);
+    width: em(15px);
+
+    @media screen and (min-width: em(700px)) {
+      animation: twitchyX 4s 1s infinite;
+      width: em(22px);
+      height: em(22px);
+      left: em(21px);
+      top: em(21px);
+    }
+  }
+
+  &__line {
+    border-top: 2px solid white;
+    position: relative;
+    top: em(22px);
+    width: 100%;
+
+    @media screen and (min-width: em(700px)) {
+      top: em(32px);
+      animation: wobbling 2s 3s infinite alternate;
+    }
+  }
+}
+
+.ground {
+  @media screen and (min-width: 700px) {
+    border-top: 2px dotted white;
+    width: 20%;
+    display: block;
+    margin: -17px auto 0;
+  }
+}
+
+@keyframes spinning {
+    0%   { transform: translateX(-70%); }
+    25%  { transform: translateX(75%); }
+    50%  { transform: translateX(-70%); }
+    75%  { transform: translateX(75%); }
+    100% { transform: translateX(-70%); }
+}
+
+// Pokeball animation for 700px+
+@keyframes wobbling {
+  0% { transform: rotate(0deg); }
+  5% { transform: rotate(-10deg); }
+  10% { transform: rotate(0deg); }
+  90% { transform: rotate(5deg); }
+  100% { transform: rotate(0deg); }
+}
+
+@keyframes back-and-forth {
+  0% { transform: translateX(0%); }
+  4% { transform: translateX(-12%); }
+  10% { transform: translateX(-10%); }
+  95% { transform: translateX(0%); }
+  99% { transform: translateX(3%); }
+  100% { transform: translateX(0%); }
+}
+
+@keyframes twitchyX {
+  0% { transform: translateX(0%) }
+  8% { transform: translateX(-55%) }
+  75% { transform: translateX(-50%) }
+  90% { transform: translateX(-30%) }
+  100% { transform: translateX(0%) }
+}
+
+@keyframes jumpy {
+  0% { transform: translateY(0%) }
+  1% { transform: translateY(0.5%) }
+  5% { transform: translateY(-10%) }
+  6% { transform: translateY(-11%) }
+  7% { transform: translateY(-10%) }
+  10% { transform: translateY(0%) }
+  100% { transform: translateY(0%) }
+}
