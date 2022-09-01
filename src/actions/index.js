@@ -11,3 +11,58 @@ export function getPokemons(){
         })
     }
 }
+
+export function getPokemonsbyName(name){
+    return async function(dispatch){
+        const jsonName = await axios.get(`http://localhost:3001/pokemons?name=${name}`)
+        dispatch({
+            type: 'GET_BY_NAME', 
+            payload: jsonName.data
+        })
+    }
+}
+
+// recibe como argumento el valor que llega del objeto
+export function getTypes(){
+    return async function(dispatch){
+        const jsonType = await axios.get('http://localhost:3001/types')
+        dispatch({
+            type: 'GET_TYPES',
+            payload: jsonType.data
+        })
+    }
+}
+
+export function filterbyTypes(payload){
+    return {
+        type: 'FILTER_BY_TYPES',
+        payload
+    }
+}
+
+export function filterbyCreated(payload){
+    return {
+        type: 'FILTER_BY_CREATED',
+        payload: payload
+    }
+}
+
+export function orderByAttack(payload){
+    return({
+        type: 'ORDER_BY_ATTACK',
+        payload
+    })
+}
+
+export function orderByAlphabet(payload){
+    return ({
+        type: 'ORDER_BY_NAME', 
+        payload: payload
+    })
+}
+
+export function ClearDetail(){
+    return {
+        type: 'CLEAR_DETAIL'
+    }
+}
